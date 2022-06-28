@@ -1,3 +1,6 @@
+print("*** Hello to Terminal Relais Controler ***")
+print("Press Strg + C to abort execution.")
+
 try:
 	from RPi import GPIO
 except ImportError:
@@ -8,8 +11,10 @@ def switch(relay_pins, relais, status):
 		board_pin = relay_pins[relais]
 		if status == "on":
 			GPIO.output(board_pin, GPIO.HIGH)
+			return
 		if status == "off":
 			GPIO.output(board_pin, GPIO.LOW)
+			return
 		else:
 			print("Status has to be on or off!")
 			return 
@@ -30,7 +35,3 @@ while True:
 	status = input("Enter status (on/off): ")
 
 	switch(relay_pins, int(relais), status)
-
-
-
-
