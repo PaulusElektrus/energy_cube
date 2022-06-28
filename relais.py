@@ -6,7 +6,7 @@ except ImportError:
 import time
 
 
-relay_pins = {'one': 14}
+relay_pins = {1:14,2:15,3:18,4:23,5:24,6:25,7:8,8:7}
 sleep_time = 1
 
 GPIO.setmode(GPIO.BCM)  
