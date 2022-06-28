@@ -5,8 +5,8 @@ voltage = [0,0,0,0,0,0,0,0]
 vref = 3.3
 
 while True:
-    for x in range(0, 8):
+    for x in range(0, 1):
         with MCP3008(channel=x) as reading:
-        voltage[x] = reading.value * vref
-        print(x,": ", voltage[x])
-        sleep(0.1)
+            voltage[x] = reading.value * vref
+            print(x,": ", voltage[x])
+            sleep(0.5)
