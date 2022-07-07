@@ -6,7 +6,6 @@ spi.open(0, 1)
 spi.max_speed_hz = 976000
 
 def write_pot(input):
-    input = hex(input)
     msb = input >> 8
     lsb = input & 0xFF
     spi.xfer([msb, lsb])

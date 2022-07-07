@@ -53,17 +53,18 @@ class home(homeTemplate):
 
   def button_2_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("read_data")
+    x = anvil.server.call("read_data")
+    alert(x)
     return
 
   def button_3_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("write_pot", 500)
+    anvil.server.call("write_pot", 0xFF)
     return
 
   def button_4_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("write_pot", 0)
+    anvil.server.call("write_pot", 0x00)
     return
 
   def button_1_show(self, **event_args):
@@ -80,7 +81,8 @@ class home(homeTemplate):
 
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-    self.build_voltage_graph()
+    #self.build_voltage_graph()
+    pass
 
 
 

@@ -12,4 +12,5 @@ meter = sdm_modbus.SDM120(
             
 def read_data():
     data = meter.read_all(sdm_modbus.registerType.INPUT)
+    print(data)
     return data

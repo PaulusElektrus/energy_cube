@@ -20,12 +20,15 @@ def einschalten():
     relais.einspeisen()
     return
 
+@anvil.server.callable
 def get_voltage():
     return ad.read_voltage()
 
+@anvil.server.callable
 def write_pot(value):
     poti.write_pot(value)
     return
 
+@anvil.server.callable
 def read_data():
     return modbus.read_data()
