@@ -1,0 +1,12 @@
+allow_embedding: false
+package_name: EnergyCube
+startup: {type: form, module: home}
+name: EnergyCube
+startup_form: null
+runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
+metadata: {title: Energy Cube, description: Masters Thesis Paul Zech, logo_img: 'asset:Prototyp
+    Stephan.jpg'}
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
