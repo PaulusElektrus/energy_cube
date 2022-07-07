@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+*.pyo
+__pycache__
+.anvil-data
 
 # C extensions
 *.so
