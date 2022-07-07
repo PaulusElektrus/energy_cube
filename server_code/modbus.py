@@ -2,7 +2,7 @@ import sdm_modbus
 
 # Settings of Sensor Device
 meter = sdm_modbus.SDM120(
-    device='/tty/USB0',
+    device='/dev/ttyUSB0',
     stopbits=1,
     parity='N',
     baud=9600,
