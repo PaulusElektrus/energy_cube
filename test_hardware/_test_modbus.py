@@ -12,13 +12,13 @@ if __name__ == "__main__":
     argparser.add_argument("device", type=str, help="Modbus device")
     argparser.add_argument("--stopbits", type=int, default=1, help="Stop bits")
     argparser.add_argument("--parity", type=str, default="N", choices=["N", "E", "O"], help="Parity")
-    argparser.add_argument("--baud", type=int, default=2400, help="Baud rate")
+    argparser.add_argument("--baud", type=int, default=9600, help="Baud rate")
     argparser.add_argument("--timeout", type=int, default=1, help="Connection timeout")
     argparser.add_argument("--unit", type=int, default=1, help="Modbus unit")
     argparser.add_argument("--json", action="store_true", default=False, help="Output as JSON")
     args = argparser.parse_args()
 
-    meter = sdm_modbus.SDM230(
+    meter = sdm_modbus.SDM120(
         device=args.device,
         stopbits=args.stopbits,
         parity=args.parity,
