@@ -16,7 +16,7 @@ class home(homeTemplate):
     self.build_voltage_graph()
     
   def build_voltage_graph(self):
-    voltage = self.n
+    voltage = anvil.server.call("get_voltage")
     gauge = go.Indicator(
                           mode = "gauge+number",
                           value = voltage,
@@ -49,7 +49,22 @@ class home(homeTemplate):
     anvil.server.call("einschalten")
     self.button_4.visible = True
     self.n = 5
-    pass
+    return
+
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call("read_data")
+    return
+
+  def button_3_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call("write_pot", 500)
+    return
+
+  def button_4_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call("write_pot", 0)
+    return
 
   def button_1_show(self, **event_args):
     """This method is called when the Button is shown on the screen"""

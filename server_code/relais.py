@@ -4,7 +4,7 @@ except ImportError:
     import _fake_GPIO as GPIO
 from time import sleep
 
-relay_pins = {1: 14, 2: 15, 3: 18, 4: 23, 5: 24, 6: 25, 7: 8, 8: 7}
+relay_pins = {1: 18, 2: 23, 3: 24, 4: 25, 5: 12, 6: 16, 7: 20, 8: 21}
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
