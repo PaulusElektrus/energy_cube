@@ -6,10 +6,16 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from anvil.js.window import jQuery
+from anvil.js import get_dom_node
+
 class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
+    iframe = jQuery("<iframe width='100%' height='800px'>").attr("src","http://localhost:3000/d/lFELSzbnk/dashboard?orgId=1&refresh=5s&from=1657721058397&to=1657721358397")
+    iframe.appendTo(get_dom_node(self.content_panel))
     
     # Any code you write here will run when the form opens.
     self.n = 1
@@ -83,8 +89,5 @@ class home(homeTemplate):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     #self.build_voltage_graph()
     pass
-
-
-
 
 
