@@ -1,4 +1,4 @@
-allow_embedding: false
+allow_embedding: true
 package_name: EnergyCube
 startup: {type: form, module: home}
 name: EnergyCube

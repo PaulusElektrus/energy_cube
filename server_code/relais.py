@@ -9,6 +9,9 @@ relay_pins = {1: 18, 2: 23, 3: 24, 4: 25, 5: 12, 6: 16, 7: 20, 8: 21}
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
+# Notaus
+GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+
 for relay_pin, board_pin in relay_pins.items():
     GPIO.setup(board_pin, GPIO.OUT)
     GPIO.output(board_pin, GPIO.HIGH)
