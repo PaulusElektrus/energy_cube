@@ -1,6 +1,5 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
-# import plotly.graph_objects as go
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -18,36 +17,6 @@ class home(homeTemplate):
     iframe.appendTo(get_dom_node(self.content_panel))
     
     # Any code you write here will run when the form opens.
-
-    # self.build_voltage_graph()
-    
-  def build_voltage_graph(self):
-    voltage = anvil.server.call("get_voltage")
-    gauge = go.Indicator(
-                          mode = "gauge+number",
-                          value = voltage,
-                          domain = {'x': [0, 1], 'y': [0, 1]},
-                          title = {'text': "Gauge chart", 'font': {'size': 24}},
-                          gauge = {
-                              'axis': {'range': [None, 10], 'tickwidth': 1, 'tickcolor': "darkblue"},
-                              'bar': {'color': "black", 'thickness': 0.4},
-                              'bgcolor': "white",
-                              'borderwidth': 2,
-                              'bordercolor': "gray",
-                              'steps': [
-                                  {'range': [0, 2], 'color': 'darkgreen'},
-                                  {'range': [2, 4], 'color': 'green'},
-                                  {'range': [4, 6], 'color': 'orange'},
-                                  {'range': [6, 8], 'color': 'yellow'},
-                                  {'range': [8, 10], 'color': 'red'},
-                              ],
-                              'threshold': {
-                                  'line': {'color': "royalblue", 'width': 4},
-                                  'thickness': 0.75,
-                                  'value': 7}}
-                          )
-    
-    self.plot_1.data = gauge
 
   def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
