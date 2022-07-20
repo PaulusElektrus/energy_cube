@@ -29,7 +29,8 @@ def einschalten():
 
 @anvil.server.callable
 def get_voltage():
-    return data.read_voltage()
+    data.read_voltage()
+    return 42
 
 @anvil.server.callable
 def write_pot(value):
@@ -38,4 +39,5 @@ def write_pot(value):
 
 @anvil.server.callable
 def read_data():
-    return data.read_modbus()
+    data.read_modbus()
+    return 43

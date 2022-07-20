@@ -1,6 +1,6 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
-import plotly.graph_objects as go
+# import plotly.graph_objects as go
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -14,12 +14,12 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    iframe = jQuery("<iframe width='100%' height='800px'>").attr("src","http://localhost:3000/d/lFELSzbnk/dashboard?orgId=1&refresh=5s&from=1657721058397&to=1657721358397")
+    iframe = jQuery("<iframe width='100%' height='800px'>").attr("src","http://localhost:3000/d/jlnf9AgRz/1?orgId=1&from=1658310136824&to=1658331736824")
     iframe.appendTo(get_dom_node(self.content_panel))
     
     # Any code you write here will run when the form opens.
-    self.n = 1
-    self.build_voltage_graph()
+
+    # self.build_voltage_graph()
     
   def build_voltage_graph(self):
     voltage = anvil.server.call("get_voltage")

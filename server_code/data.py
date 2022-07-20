@@ -7,7 +7,7 @@ from gpiozero import MCP3008
 
 vref = 5
 
-modbus_sql = ("INSERT INTO sdm230 "
+modbus_sql = ("INSERT INTO sdm120 "
                         "(ID,Datum,Voltage,Current,Power_Active,Power_Apparent,Power_Reactive,Power_Factor,Phase_Angle,Frequency,Imported_Energy_Active,Exported_Energy_Active,Imported_Energy_Reactive,Exported_Energy_Reactive,Total_Demand_Power_Active,Maximum_Total_Demand_Power_Active,Import_Demand_Power_Active,Maximum_Import_Demand_Power_Active,Export_Demand_Power_Active,Maximum_Export_Demand_Power_Active,Total_Demand_Current,Maximum_Total_Demand_Current,Total_Energy_Active,Total_Energy_Reactive) "
                         "VALUES (ID,UTC_TIMESTAMP(),%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
@@ -16,7 +16,7 @@ ad_sql = ()
 db = mysql.connector.connect(
             host ="localhost",
             user ="root",
-            password="",
+            password="Master2022",
             database = "energy_cube",
             )
 cursor = db.cursor() 
@@ -31,18 +31,16 @@ meter = sdm_modbus.SDM120(
     )
             
 def read_modbus():
-    while True:
-        data = meter.read_all(sdm_modbus.registerType.INPUT)
-        data_list = tuple(data.values())
-        write(data_list, modbus_sql)
-        sleep(0.5)
+    data = meter.read_all(sdm_modbus.registerType.INPUT)
+    data_list = tuple(data.values())
+    write(data_list, modbus_sql)
+    sleep(0.5)
 
 def read_voltage():
-    while True:
-        with MCP3008(channel=0, clock_pin=11, mosi_pin=10, miso_pin=9, select_pin=8) as device:
-            voltage = device.voltage * vref
-        write(voltage, ad_sql)
-        sleep(0.5)
+    with MCP3008(channel=0, clock_pin=11, mosi_pin=10, miso_pin=9, select_pin=8) as device:
+        voltage = device.voltage * vref
+    write(voltage, ad_sql)
+    sleep(0.5)
 
 def write(data, sql):
     try:
