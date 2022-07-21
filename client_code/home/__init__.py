@@ -22,8 +22,8 @@ class home(homeTemplate):
     """This method is called when the button is clicked"""
     self.button_4.visible = False
     anvil.server.call("einschalten")
+    anvil.server.call("ausschalten")
     self.button_4.visible = True
-    self.n = 5
     return
 
   def button_2_click(self, **event_args):
@@ -34,12 +34,12 @@ class home(homeTemplate):
 
   def button_3_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("write_pot", 0xFF)
+    anvil.server.call("write_pot", 0x00)
     return
 
   def button_4_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call("write_pot", 0x00)
+    anvil.server.call("write_pot", 0xFF)
     return
 
   def button_1_show(self, **event_args):
@@ -48,10 +48,6 @@ class home(homeTemplate):
 
   def button_1_hide(self, **event_args):
     """This method is called when the Button is removed from the screen"""
-    pass
-
-  def plot_1_click(self, points, **event_args):
-    """This method is called when a data point is clicked."""
     pass
 
   def timer_1_tick(self, **event_args):

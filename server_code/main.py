@@ -28,6 +28,11 @@ def einschalten():
     return
 
 @anvil.server.callable
+def ausschalten():
+    relais.off()
+    return
+
+@anvil.server.callable
 def get_voltage():
     data.read_voltage()
     return 42
