@@ -2,7 +2,7 @@ import spidev
 import time
 
 spi = spidev.SpiDev()
-spi.open(0, 0)
+spi.open(1, 1)
 spi.max_speed_hz = 976000
 
 def write_pot(input):
@@ -25,9 +25,11 @@ def write_pot(input):
 while True:
     for i in range(0x00, 0xFF, 1):
         write_pot(i)
-        time.sleep(0.001)
+        time.sleep(0.1)
     print("On")
+    time.sleep(2)
     for i in range(0xFF, 0x00, -1):
         write_pot(i)
-        time.sleep(0.001)
+        time.sleep(0.1)
     print("Off")
+    time.sleep(2)
