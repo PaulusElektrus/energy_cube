@@ -5,7 +5,7 @@ except ImportError:
 
 import time
 
-relay_pins = {1:14,2:15,3:18,4:23,5:24,6:25,7:8,8:7}
+relay_pins = {1:2,2:3,3:4,4:27,5:22,6:5,7:6,8:13}
 sleep_time = 0.1
 
 GPIO.setmode(GPIO.BCM)  
@@ -14,10 +14,16 @@ GPIO.setwarnings(False)
 for relay_pin, board_pin in relay_pins.items():
 	GPIO.setup(board_pin, GPIO.OUT)
 	GPIO.output(board_pin, GPIO.HIGH)
+	time.sleep(1)
+
+time.sleep(1)
 
 for relay_pin, board_pin in relay_pins.items():
 	GPIO.setup(board_pin, GPIO.OUT)
 	GPIO.output(board_pin, GPIO.LOW)
+	time.sleep(1)
+
+time.sleep(1)
 
 def float_pin(off, on):
 	if (on != None):
@@ -45,4 +51,3 @@ while True:
 		float_pin(relay_pins[5], relay_pins[6]  )
 		float_pin(relay_pins[6]  , relay_pins[7]  )
 		float_pin(relay_pins[7]  , None               )
-
