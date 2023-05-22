@@ -44,7 +44,7 @@ void loop(){
     getCommand();
     measurement();
     returnData();
-    delay(1000);
+    delay(2000);
 }
 
 

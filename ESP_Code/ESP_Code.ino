@@ -24,7 +24,7 @@ void loop() {
     sendCommand();
     getMeasurements();
     sendToServer();
-    delay(1000);
+    delay(2000);
 }
 
 
