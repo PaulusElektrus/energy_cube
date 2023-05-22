@@ -30,6 +30,7 @@ float uNT = 0.0;
 float uBatt = 0.0;
 float uWR = 0.0;
 float iBatt = 0.0;
+float bsPower = 0.0;
 
 
 void setup(){
@@ -43,6 +44,7 @@ void setup(){
 void loop(){
     getCommand();
     measurement();
+    control();
     returnData();
     delay(2000);
 }
@@ -106,7 +108,7 @@ void parseData() {
 
 
 void showParsedData() {
-    Serial.print("Message: ");
+    Serial.print("Control: ");
     Serial.println(commandFromESP);
     Serial.print("Power: ");
     Serial.println(powerFromESP);
@@ -121,7 +123,7 @@ void measurement() {
 }
 
 
-float readChannel(ADS1115_MUX channel){
+float readChannel(ADS1115_MUX channel) {
   float voltage = 0.0;
   adc.setCompareChannels(channel);
   adc.startSingleMeasurement();
@@ -131,8 +133,13 @@ float readChannel(ADS1115_MUX channel){
 }
 
 
+void control() {
+    bsPower = uBatt * iBatt;
+}
+
+
 void returnData() {
-    String outgoingData = "<" + Status + "," + String(uNT) + "," + String(uBatt) + "," + String(uWR) + "," + String(iBatt) + ">";
+    String outgoingData = "<" + Status + "," + String(uNT) + "," + String(uBatt) + "," + String(uWR) + "," + String(iBatt) + "," + String(bsPower) + ">";
     Serial.print(outgoingData);
 }
 
