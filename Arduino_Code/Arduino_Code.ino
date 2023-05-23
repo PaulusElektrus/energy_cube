@@ -22,15 +22,15 @@ const byte numChars = 32;
 char receivedChars[numChars];
 char tempChars[numChars];
 char commandFromESP[numChars] = {0};
-float powerFromESP = 0.0;
+int powerFromESP = 0;
 
-// Outgoing Communication
-String Status = "Off";
+// Measurements
+String Status = "O";
 float uNT = 0.0;
 float uBatt = 0.0;
 float uWR = 0.0;
 float iBatt = 0.0;
-float bsPower = 0.0;
+int bsPower = 0.0;
 
 
 void setup(){
@@ -42,11 +42,28 @@ void setup(){
 
 
 void loop(){
-    getCommand();
     measurement();
+    getCommand();
     control();
-    returnData();
-    delay(2000);
+}
+
+
+void measurement() {
+    uNT = readChannel(ADS1115_COMP_0_GND);
+    uBatt = readChannel(ADS1115_COMP_1_GND);
+    uWR = readChannel(ADS1115_COMP_2_GND);
+    iBatt = readChannel(ADS1115_COMP_3_GND);
+    bsPower = uBatt * iBatt;
+}
+
+
+float readChannel(ADS1115_MUX channel) {
+  float voltage = 0.0;
+  adc.setCompareChannels(channel);
+  adc.startSingleMeasurement();
+  while(adc.isBusy()){}
+  voltage = adc.getResult_mV();
+  return voltage;
 }
 
 
@@ -55,7 +72,6 @@ void getCommand() {
     if (newData == true) {
         strcpy(tempChars, receivedChars);
         parseData();
-        showParsedData();
         newData = false;
     }
 }
@@ -104,32 +120,7 @@ void parseData() {
     strtokIndx = strtok(NULL, ",");
     powerFromESP = atof(strtokIndx);
 
-}
-
-
-void showParsedData() {
-    Serial.print("Control: ");
-    Serial.println(commandFromESP);
-    Serial.print("Power: ");
-    Serial.println(powerFromESP);
-}
-
-
-void measurement() {
-    uNT = readChannel(ADS1115_COMP_0_GND);
-    uBatt = readChannel(ADS1115_COMP_1_GND);
-    uWR = readChannel(ADS1115_COMP_2_GND);
-    iBatt = readChannel(ADS1115_COMP_3_GND);
-}
-
-
-float readChannel(ADS1115_MUX channel) {
-  float voltage = 0.0;
-  adc.setCompareChannels(channel);
-  adc.startSingleMeasurement();
-  while(adc.isBusy()){}
-  voltage = adc.getResult_mV();
-  return voltage;
+    returnData();
 }
 
 
@@ -139,7 +130,11 @@ void control() {
 
 
 void returnData() {
-    String outgoingData = "<" + Status + "," + String(uNT) + "," + String(uBatt) + "," + String(uWR) + "," + String(iBatt) + "," + String(bsPower) + ">";
+    String outgoingData = "<" + Status + "," + uBatt + "," + iBatt + "," + bsPower + ">";
     Serial.print(outgoingData);
 }
 
+
+void control() {
+    
+}
