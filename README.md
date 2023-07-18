@@ -1,4 +1,10 @@
-# Energiewürfel
+# Please see this [branch](https://github.com/PaulusElektrus/energy_cube/tree/Old_Prototype_RaspberryPi)
+
+---------------------------------------------------------------------------------------------------------
+
+# Not up to date!
+
+## Energiewürfel
 
 ## Masterarbeit Smart-Home Batteriespeicher für Balkonkraftwerke
 
